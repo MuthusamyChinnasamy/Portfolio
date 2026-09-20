@@ -1,0 +1,1256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Muthusamy C | Full Stack Developer | Bangalore</title>
+<meta name="description" content="Muthusamy C is a Full Stack Developer based in Bangalore, India, building scalable web applications with Django, Angular, ASP.NET, Python, and JavaScript." />
+<meta name="author" content="Muthusamy C" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#050505" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Muthusamy C | Full Stack Developer" />
+<meta property="og:description" content="Full Stack Developer focused on building practical, scalable web applications across modern frontend and backend technologies." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Muthusamy C | Full Stack Developer" />
+<meta name="twitter:description" content="Full Stack Developer based in Bangalore, India." />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050505'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Inter,sans-serif' font-size='26' font-weight='800' fill='%2310b981'%3EMC%3C/text%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          base: { 900: '#050505', 800: '#080808', 700: '#0B0B0D', 600: '#101014' },
+          accent: { DEFAULT: '#10b981', soft: '#34d399', deep: '#047857' },
+          cyanx: { DEFAULT: '#22d3ee', soft: '#67e8f9' },
+        },
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          display: ['Space Grotesk', 'Inter', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  html, body { overflow-x: hidden; }
+  body {
+    margin: 0; background: #050505; color: #f4f4f5;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection { background: rgba(16,185,129,.35); color: #fff; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #050505; }
+  ::-webkit-scrollbar-thumb { background: #1a1a1e; border-radius: 8px; border: 2px solid #050505; }
+  ::-webkit-scrollbar-thumb:hover { background: #10b981; }
+  :focus-visible { outline: 2px solid #10b981; outline-offset: 3px; border-radius: 4px; }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .noise::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .glass {
+    background: rgba(11,11,13,.6);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgba(255,255,255,.06);
+  }
+  .glow-accent { box-shadow: 0 0 0 1px rgba(16,185,129,.25), 0 0 40px -8px rgba(16,185,129,.45); }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #ffffff 0%, #a7f3d0 55%, #34d399 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(16,185,129,.35), transparent);
+  }
+
+  /* Page loader */
+  #loader {
+    position: fixed; inset: 0; z-index: 100; background: #050505;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity .8s ease, visibility .8s ease;
+  }
+  #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .loader-bar { width: 220px; height: 2px; background: rgba(255,255,255,.08); overflow: hidden; border-radius: 2px; }
+  .loader-bar span { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, #10b981, #22d3ee); transition: width .3s ease; }
+
+  /* Custom cursor */
+  @media (hover: hover) and (pointer: fine) {
+    body { cursor: none; }
+    a, button, [data-hover] { cursor: none; }
+    #cursor {
+      position: fixed; top: 0; left: 0; z-index: 90; pointer-events: none;
+      width: 10px; height: 10px; border-radius: 999px;
+      background: #10b981; mix-blend-mode: difference;
+      transform: translate(-50%, -50%);
+      transition: width .25s ease, height .25s ease, background .25s ease;
+    }
+    #cursor.hover { width: 56px; height: 56px; background: rgba(16,185,129,.35); mix-blend-mode: normal; }
+    #cursor.view { width: 84px; height: 84px; background: rgba(16,185,129,.9); }
+    #cursor.view::after {
+      content: 'VIEW'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; letter-spacing: .18em; color: #050505;
+    }
+  }
+  @media (hover: none), (pointer: coarse) {
+    #cursor { display: none; }
+  }
+
+  /* Reveal animation */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Timeline draw */
+  .timeline-line { background: linear-gradient(180deg, rgba(16,185,129,0) 0%, rgba(16,185,129,.6) 10%, rgba(16,185,129,.6) 90%, rgba(16,185,129,0) 100%); transform-origin: top; transform: scaleY(0); transition: transform 1.6s cubic-bezier(.2,.7,.2,1); }
+  .timeline-line.in { transform: scaleY(1); }
+
+  /* Code fragment */
+  .code-frag { font-family: 'Space Grotesk', ui-monospace, monospace; font-size: 12px; color: rgba(167,243,208,.55); letter-spacing: .02em; }
+
+  /* Marquee */
+  .marquee { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* Modal */
+  #modal { position: fixed; inset: 0; z-index: 80; display: none; }
+  #modal.open { display: flex; }
+  #modal .backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.75); backdrop-filter: blur(8px); }
+  #modal .panel { position: relative; margin: auto; max-width: 720px; width: calc(100% - 2rem); max-height: 90vh; overflow-y: auto; }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .timeline-line { transform: scaleY(1) !important; }
+    #cursor { display: none; }
+    body { cursor: auto; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ============ PAGE LOADER ============ -->
+<div id="loader" role="status" aria-live="polite">
+  <div class="text-center">
+    <div class="font-display text-5xl font-bold tracking-tight text-white mb-3">
+      M<span class="text-accent">C</span>
+    </div>
+    <div class="text-[10px] uppercase tracking-[.4em] text-neutral-500 mb-6">Full Stack Developer</div>
+    <div class="loader-bar"><span id="loader-fill"></span></div>
+  </div>
+</div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div id="cursor" aria-hidden="true"></div>
+
+<!-- ============ SCROLL PROGRESS ============ -->
+<div class="fixed top-0 left-0 right-0 z-[70] h-[2px] bg-transparent">
+  <div id="scroll-progress" class="h-full w-0 bg-gradient-to-r from-accent to-cyanx"></div>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<header id="navbar" class="fixed top-0 left-0 right-0 z-[60] transition-all duration-500">
+  <nav class="max-w-7xl mx-auto px-5 sm:px-8 h-16 sm:h-20 flex items-center justify-between" aria-label="Primary">
+    <a href="#home" class="flex items-center gap-2 group">
+      <span class="font-display text-xl sm:text-2xl font-bold tracking-tight">M<span class="text-accent">C</span></span>
+      <span class="hidden sm:inline text-[10px] uppercase tracking-[.3em] text-neutral-500 group-hover:text-neutral-300 transition">Muthusamy C</span>
+    </a>
+
+    <ul class="hidden lg:flex items-center gap-8 text-sm">
+      <li><a data-nav href="#home" class="text-neutral-400 hover:text-white transition">Home</a></li>
+      <li><a data-nav href="#about" class="text-neutral-400 hover:text-white transition">About</a></li>
+      <li><a data-nav href="#experience" class="text-neutral-400 hover:text-white transition">Experience</a></li>
+      <li><a data-nav href="#projects" class="text-neutral-400 hover:text-white transition">Projects</a></li>
+      <li><a data-nav href="#skills" class="text-neutral-400 hover:text-white transition">Skills</a></li>
+      <li><a data-nav href="#education" class="text-neutral-400 hover:text-white transition">Education</a></li>
+      <li><a data-nav href="#contact" class="text-neutral-400 hover:text-white transition">Contact</a></li>
+    </ul>
+
+    <a href="#contact" class="hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-sm text-neutral-200 hover:border-accent hover:text-white transition">
+      <i class="fa-solid fa-paper-plane text-xs text-accent"></i> Let's Talk
+    </a>
+
+    <button id="menu-btn" class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px] rounded-md border border-white/10" aria-label="Open menu" aria-expanded="false">
+      <span class="block w-5 h-[1.5px] bg-white transition-transform"></span>
+      <span class="block w-5 h-[1.5px] bg-white transition-opacity"></span>
+      <span class="block w-5 h-[1.5px] bg-white transition-transform"></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile menu -->
+<div id="mobile-menu" class="fixed inset-0 z-[65] hidden lg:hidden">
+  <div class="absolute inset-0 bg-base-900/95 backdrop-blur-xl"></div>
+  <div class="relative h-full flex flex-col justify-center px-8">
+    <ul class="space-y-6 text-3xl font-display font-semibold">
+      <li><a data-mnav href="#home" class="text-neutral-300 hover:text-accent transition">Home</a></li>
+      <li><a data-mnav href="#about" class="text-neutral-300 hover:text-accent transition">About</a></li>
+      <li><a data-mnav href="#experience" class="text-neutral-300 hover:text-accent transition">Experience</a></li>
+      <li><a data-mnav href="#projects" class="text-neutral-300 hover:text-accent transition">Projects</a></li>
+      <li><a data-mnav href="#skills" class="text-neutral-300 hover:text-accent transition">Skills</a></li>
+      <li><a data-mnav href="#education" class="text-neutral-300 hover:text-accent transition">Education</a></li>
+      <li><a data-mnav href="#contact" class="text-neutral-300 hover:text-accent transition">Contact</a></li>
+    </ul>
+    <div class="mt-12 text-xs uppercase tracking-[.3em] text-neutral-500">Bangalore, India</div>
+  </div>
+</div>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="relative min-h-[100svh] flex items-center overflow-hidden noise">
+  <div class="absolute inset-0 grid-bg opacity-70" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(16,185,129,.12),transparent_55%),radial-gradient(circle_at_80%_70%,rgba(34,211,238,.08),transparent_55%)]" aria-hidden="true"></div>
+
+  <!-- Three.js canvas -->
+  <canvas id="hero-canvas" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
+
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 w-full grid lg:grid-cols-12 gap-10 items-center pt-28 pb-20">
+    <div class="lg:col-span-7">
+      <div class="inline-flex items-center gap-3 px-3 py-1.5 rounded-full border border-white/10 glass text-xs mb-6 reveal">
+        <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+        <span class="text-neutral-300">Available for opportunities</span>
+        <span class="text-neutral-600">/</span>
+        <span class="text-neutral-500">Bangalore, India</span>
+      </div>
+
+      <h1 class="font-display font-bold tracking-tight text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[.95] reveal">
+        <span class="block text-white">Muthusamy</span>
+        <span class="block gradient-text">C.</span>
+      </h1>
+
+      <div class="mt-6 flex items-center gap-4 reveal">
+        <div class="h-px w-12 bg-accent"></div>
+        <p class="text-xs sm:text-sm uppercase tracking-[.35em] text-neutral-400">Full Stack Developer</p>
+      </div>
+
+      <p class="mt-8 text-base sm:text-lg text-neutral-400 max-w-xl leading-relaxed reveal">
+        Full Stack Developer focused on building practical, scalable web applications
+        across modern frontend and backend technologies.
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-3 reveal">
+        <a href="#projects" data-magnetic class="group inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-accent text-base-900 font-semibold hover:bg-accent-soft transition">
+          Explore My Work
+          <i class="fa-solid fa-arrow-down text-xs transition-transform group-hover:translate-y-0.5"></i>
+        </a>
+        <a href="#contact" data-magnetic class="inline-flex items-center gap-3 px-6 py-3.5 rounded-full border border-white/15 text-white hover:border-accent hover:bg-white/[.03] transition">
+          Contact Me
+          <i class="fa-regular fa-envelope text-xs"></i>
+        </a>
+      </div>
+
+      <div class="mt-14 flex items-center gap-6 text-xs text-neutral-500 reveal">
+        <div class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-accent"></i> Bangalore, India</div>
+        <div class="hidden sm:flex items-center gap-2"><i class="fa-solid fa-code text-accent"></i> Django · Angular · ASP.NET</div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 hidden lg:block">
+      <div class="relative reveal">
+        <div class="glass rounded-2xl p-6 font-mono text-xs text-neutral-400 leading-relaxed shadow-2xl">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500/60"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/60"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-green-500/60"></span>
+            <span class="ml-3 text-[10px] uppercase tracking-[.25em] text-neutral-600">developer.profile</span>
+          </div>
+          <div class="space-y-1.5">
+            <div><span class="text-accent">const</span> <span class="text-white">engineer</span> <span class="text-neutral-600">=</span> <span class="text-cyanx">{</span></div>
+            <div class="pl-4"><span class="text-neutral-500">role:</span> <span class="text-emerald-300">"Full Stack Developer"</span>,</div>
+            <div class="pl-4"><span class="text-neutral-500">stack:</span> <span class="text-emerald-300">["Django","Angular","ASP.NET"]</span>,</div>
+            <div class="pl-4"><span class="text-neutral-500">focus:</span> <span class="text-emerald-300">"scalable web apps"</span>,</div>
+            <div class="pl-4"><span class="text-neutral-500">location:</span> <span class="text-emerald-300">"Bangalore, IN"</span>,</div>
+            <div><span class="text-cyanx">}</span>;</div>
+          </div>
+        </div>
+        <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-accent/20 blur-3xl" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-600">
+    <span class="text-[10px] uppercase tracking-[.3em]">Scroll</span>
+    <div class="w-px h-10 bg-gradient-to-b from-accent to-transparent"></div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<section class="relative py-10 border-y border-white/5 overflow-hidden">
+  <div class="marquee gap-12 text-neutral-600">
+    <div class="flex gap-12 pr-12">
+      <span class="font-display text-2xl sm:text-3xl font-semibold">HTML</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">CSS</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">JavaScript</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">Python</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">Django</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">Angular</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">ASP.NET</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">MySQL</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">SQL Server</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">Git</span><span class="text-accent">·</span>
+    </div>
+    <div class="flex gap-12 pr-12" aria-hidden="true">
+      <span class="font-display text-2xl sm:text-3xl font-semibold">HTML</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">CSS</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">JavaScript</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">Python</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">Django</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">Angular</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">ASP.NET</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">MySQL</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">SQL Server</span><span class="text-accent">·</span>
+      <span class="font-display text-2xl sm:text-3xl font-semibold">Git</span><span class="text-accent">·</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="relative py-24 sm:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <div class="text-[10px] uppercase tracking-[.4em] text-accent mb-4">01 — About</div>
+      <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+        Engineering <span class="gradient-text">practical</span> software.
+      </h2>
+      <p class="mt-8 text-neutral-400 text-base sm:text-lg leading-relaxed">
+        I'm a Full Stack Developer based in Bangalore, India, working across frontend and backend
+        to build web applications with Django, Angular, ASP.NET, Python, and JavaScript. My work
+        spans client requirements, project implementation, and team collaboration, with a strong
+        emphasis on shipping reliable software end to end.
+      </p>
+    </div>
+
+    <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass rounded-2xl p-6 reveal">
+        <i class="fa-solid fa-layer-group text-2xl text-accent mb-4"></i>
+        <div class="font-display font-semibold text-white">Full Stack</div>
+        <p class="mt-2 text-sm text-neutral-500 leading-relaxed">Frontend and backend web application development.</p>
+      </div>
+      <div class="glass rounded-2xl p-6 reveal">
+        <i class="fa-solid fa-cubes text-2xl text-accent mb-4"></i>
+        <div class="font-display font-semibold text-white">Frameworks</div>
+        <p class="mt-2 text-sm text-neutral-500 leading-relaxed">Django, Angular, and ASP.NET across projects.</p>
+      </div>
+      <div class="glass rounded-2xl p-6 reveal">
+        <i class="fa-solid fa-database text-2xl text-accent mb-4"></i>
+        <div class="font-display font-semibold text-white">Databases</div>
+        <p class="mt-2 text-sm text-neutral-500 leading-relaxed">MySQL and SQL Server in production systems.</p>
+      </div>
+      <div class="glass rounded-2xl p-6 reveal">
+        <i class="fa-solid fa-users text-2xl text-accent mb-4"></i>
+        <div class="font-display font-semibold text-white">Collaboration</div>
+        <p class="mt-2 text-sm text-neutral-500 leading-relaxed">Client communication and team onboarding.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience" class="relative py-24 sm:py-32 bg-base-800/40">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <div class="text-[10px] uppercase tracking-[.4em] text-accent mb-4">02 — Experience</div>
+      <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">Where I've <span class="gradient-text">worked</span>.</h2>
+    </div>
+
+    <div class="mt-16 relative pl-8 sm:pl-12">
+      <div class="timeline-line absolute left-2 sm:left-3 top-0 bottom-0 w-px"></div>
+
+      <!-- Aqure -->
+      <article class="relative mb-16 reveal">
+        <div class="absolute -left-[26px] sm:-left-[34px] top-1 w-4 h-4 rounded-full bg-accent glow-accent"></div>
+        <div class="glass rounded-2xl p-6 sm:p-8 hover:border-accent/30 transition">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <div class="text-[10px] uppercase tracking-[.3em] text-accent mb-2">Current</div>
+              <h3 class="font-display text-xl sm:text-2xl font-semibold text-white">Software Engineer</h3>
+              <div class="mt-1 text-neutral-400 text-sm">Aqure Software Technology Pvt. Ltd. · Bangalore</div>
+            </div>
+            <div class="text-xs text-neutral-500 glass px-3 py-1.5 rounded-full whitespace-nowrap">August 2025 — Present</div>
+          </div>
+          <ul class="mt-6 space-y-3 text-sm text-neutral-400 leading-relaxed">
+            <li class="flex gap-3"><i class="fa-solid fa-shield-halved text-accent mt-1 text-xs"></i><span>Working as a Software Engineer on a DRDO-ADA project through Aqure Software Technology.</span></li>
+            <li class="flex gap-3"><i class="fa-solid fa-code text-accent mt-1 text-xs"></i><span>Involved in design, development, and maintenance of software modules for defense-related applications.</span></li>
+            <li class="flex gap-3"><i class="fa-solid fa-people-group text-accent mt-1 text-xs"></i><span>Collaborating with cross-functional teams while following DRDO security and compliance standards.</span></li>
+          </ul>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">Django</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">REST APIs</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">Git</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Techvaraha -->
+      <article class="relative mb-16 reveal">
+        <div class="absolute -left-[26px] sm:-left-[34px] top-1 w-4 h-4 rounded-full bg-accent/60"></div>
+        <div class="glass rounded-2xl p-6 sm:p-8 hover:border-accent/30 transition">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <h3 class="font-display text-xl sm:text-2xl font-semibold text-white">Software Engineer</h3>
+              <div class="mt-1 text-neutral-400 text-sm">Techvaraha Solution Pvt Ltd · Bangalore</div>
+            </div>
+            <div class="text-xs text-neutral-500 glass px-3 py-1.5 rounded-full whitespace-nowrap">July 2023 — Present</div>
+          </div>
+
+          <p class="mt-6 text-sm text-neutral-400 leading-relaxed">
+            Web development professional with a wide range of skills including HTML, CSS, JavaScript,
+            Python, Django, Angular, ASP.NET, and MySQL.
+          </p>
+
+          <div class="mt-6 grid sm:grid-cols-3 gap-4">
+            <div class="rounded-xl border border-white/5 p-4">
+              <div class="text-xs uppercase tracking-[.2em] text-accent mb-2">Client & Comms</div>
+              <ul class="text-xs text-neutral-500 space-y-1.5 leading-relaxed">
+                <li>Gathering client requirements</li>
+                <li>Communicating to dev team</li>
+                <li>Supervising implementation</li>
+                <li>Aligning with client goals</li>
+              </ul>
+            </div>
+            <div class="rounded-xl border border-white/5 p-4">
+              <div class="text-xs uppercase tracking-[.2em] text-accent mb-2">Project Delivery</div>
+              <ul class="text-xs text-neutral-500 space-y-1.5 leading-relaxed">
+                <li>Real estate booking & billing</li>
+                <li>Pharma material tracking</li>
+                <li>IT ticket management site</li>
+              </ul>
+            </div>
+            <div class="rounded-xl border border-white/5 p-4">
+              <div class="text-xs uppercase tracking-[.2em] text-accent mb-2">Team</div>
+              <ul class="text-xs text-neutral-500 space-y-1.5 leading-relaxed">
+                <li>Onboarding new members</li>
+                <li>Training & assistance</li>
+                <li>Ongoing project support</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">HTML</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">CSS</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">JavaScript</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">Python</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">Django</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">Angular</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">ASP.NET</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">MySQL</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Haalan -->
+      <article class="relative reveal">
+        <div class="absolute -left-[26px] sm:-left-[34px] top-1 w-4 h-4 rounded-full bg-accent/40"></div>
+        <div class="glass rounded-2xl p-6 sm:p-8 hover:border-accent/30 transition">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <h3 class="font-display text-xl sm:text-2xl font-semibold text-white">Internship — Python Full-Stack</h3>
+              <div class="mt-1 text-neutral-400 text-sm">Haalan Infotech · Salem</div>
+            </div>
+            <div class="text-xs text-neutral-500 glass px-3 py-1.5 rounded-full whitespace-nowrap">April 2023 — July 2023</div>
+          </div>
+          <ul class="mt-6 space-y-3 text-sm text-neutral-400 leading-relaxed">
+            <li class="flex gap-3"><i class="fa-brands fa-python text-accent mt-1 text-xs"></i><span>Gained hands-on experience developing web applications with Django.</span></li>
+            <li class="flex gap-3"><i class="fa-solid fa-code-branch text-accent mt-1 text-xs"></i><span>Worked on both backend and frontend tasks.</span></li>
+            <li class="flex gap-3"><i class="fa-solid fa-graduation-cap text-accent mt-1 text-xs"></i><span>Created a demo project for student attendance management — covering database design, backend, frontend, and user interface.</span></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects" class="relative py-24 sm:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <div class="text-[10px] uppercase tracking-[.4em] text-accent mb-4">03 — Selected Work</div>
+      <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">Projects I've <span class="gradient-text">built</span>.</h2>
+    </div>
+
+    <div class="mt-16 grid md:grid-cols-2 gap-6">
+
+      <!-- Project 1 -->
+      <button data-project="1" data-hover class="group text-left relative overflow-hidden rounded-2xl border border-white/8 bg-gradient-to-br from-base-700 to-base-900 p-8 min-h-[340px] flex flex-col justify-between hover:border-accent/40 transition reveal">
+        <div class="absolute inset-0 grid-bg opacity-40"></div>
+        <div class="absolute top-0 right-0 w-40 h-40 bg-accent/10 blur-3xl rounded-full group-hover:bg-accent/20 transition"></div>
+        <div class="relative">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] uppercase tracking-[.3em] text-accent">Project 01</span>
+            <i class="fa-solid fa-building-columns text-2xl text-accent/70"></i>
+          </div>
+          <h3 class="mt-6 font-display text-2xl font-semibold text-white leading-tight">Real Estate Online Booking & Billing System</h3>
+          <p class="mt-3 text-sm text-neutral-400 leading-relaxed">An online booking and billing system for real estate workflows.</p>
+        </div>
+        <div class="relative mt-6 flex flex-wrap gap-2">
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">Web App</span>
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">Billing</span>
+        </div>
+      </button>
+
+      <!-- Project 2 -->
+      <button data-project="2" data-hover class="group text-left relative overflow-hidden rounded-2xl border border-white/8 bg-gradient-to-br from-base-700 to-base-900 p-8 min-h-[340px] flex flex-col justify-between hover:border-accent/40 transition reveal">
+        <div class="absolute inset-0 grid-bg opacity-40"></div>
+        <div class="absolute top-0 right-0 w-40 h-40 bg-cyanx/10 blur-3xl rounded-full group-hover:bg-cyanx/20 transition"></div>
+        <div class="relative">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] uppercase tracking-[.3em] text-accent">Project 02</span>
+            <i class="fa-solid fa-pills text-2xl text-accent/70"></i>
+          </div>
+          <h3 class="mt-6 font-display text-2xl font-semibold text-white leading-tight">Pharmaceutical Material Tracking System</h3>
+          <p class="mt-3 text-sm text-neutral-400 leading-relaxed">A system for tracking pharmaceutical materials.</p>
+        </div>
+        <div class="relative mt-6 flex flex-wrap gap-2">
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">Tracking</span>
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">Enterprise</span>
+        </div>
+      </button>
+
+      <!-- Project 3 -->
+      <button data-project="3" data-hover class="group text-left relative overflow-hidden rounded-2xl border border-white/8 bg-gradient-to-br from-base-700 to-base-900 p-8 min-h-[340px] flex flex-col justify-between hover:border-accent/40 transition reveal">
+        <div class="absolute inset-0 grid-bg opacity-40"></div>
+        <div class="absolute top-0 right-0 w-40 h-40 bg-accent/10 blur-3xl rounded-full group-hover:bg-accent/20 transition"></div>
+        <div class="relative">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] uppercase tracking-[.3em] text-accent">Project 03</span>
+            <i class="fa-solid fa-ticket text-2xl text-accent/70"></i>
+          </div>
+          <h3 class="mt-6 font-display text-2xl font-semibold text-white leading-tight">IT Ticket & Production Issue Site</h3>
+          <p class="mt-3 text-sm text-neutral-400 leading-relaxed">An IT site for raising tickets and addressing production-related issues.</p>
+        </div>
+        <div class="relative mt-6 flex flex-wrap gap-2">
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">Support</span>
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">Workflow</span>
+        </div>
+      </button>
+
+      <!-- Project 4 -->
+      <button data-project="4" data-hover class="group text-left relative overflow-hidden rounded-2xl border border-white/8 bg-gradient-to-br from-base-700 to-base-900 p-8 min-h-[340px] flex flex-col justify-between hover:border-accent/40 transition reveal">
+        <div class="absolute inset-0 grid-bg opacity-40"></div>
+        <div class="absolute top-0 right-0 w-40 h-40 bg-cyanx/10 blur-3xl rounded-full group-hover:bg-cyanx/20 transition"></div>
+        <div class="relative">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] uppercase tracking-[.3em] text-accent">Internship Project</span>
+            <i class="fa-solid fa-clipboard-user text-2xl text-accent/70"></i>
+          </div>
+          <h3 class="mt-6 font-display text-2xl font-semibold text-white leading-tight">Student Attendance Management (Demo)</h3>
+          <p class="mt-3 text-sm text-neutral-400 leading-relaxed">A demo project built during the Haalan Infotech internship.</p>
+        </div>
+        <div class="relative mt-6 flex flex-wrap gap-2">
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">Django</span>
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">Learning</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECT MODAL ============ -->
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="backdrop" data-close-modal></div>
+  <div class="panel glass rounded-2xl p-8 sm:p-10">
+    <button data-close-modal class="absolute top-4 right-4 w-9 h-9 rounded-full border border-white/10 hover:border-accent hover:text-white text-neutral-400 transition" aria-label="Close">
+      <i class="fa-solid fa-xmark text-sm"></i>
+    </button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills" class="relative py-24 sm:py-32 bg-base-800/40">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <div class="text-[10px] uppercase tracking-[.4em] text-accent mb-4">04 — Skills & Tools</div>
+      <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">Technology <span class="gradient-text">stack</span>.</h2>
+    </div>
+
+    <div class="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="skills-grid"></div>
+
+    <div class="mt-16 grid md:grid-cols-2 gap-6">
+      <div class="glass rounded-2xl p-8 reveal">
+        <i class="fa-brands fa-wordpress text-3xl text-accent mb-4"></i>
+        <h3 class="font-display text-xl font-semibold text-white">WordPress Experience</h3>
+        <p class="mt-3 text-sm text-neutral-400 leading-relaxed">
+          Customized WordPress themes and plugins, enhancing my understanding of content management and website optimization.
+        </p>
+      </div>
+      <div class="glass rounded-2xl p-8 reveal">
+        <i class="fa-solid fa-code text-3xl text-accent mb-4"></i>
+        <h3 class="font-display text-xl font-semibold text-white">Frontend Skills</h3>
+        <p class="mt-3 text-sm text-neutral-400 leading-relaxed">
+          Improved proficiency in HTML and CSS by developing responsive, user-friendly web pages.
+        </p>
+        <div class="mt-5 flex gap-2">
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">HTML</span>
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">CSS</span>
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">JavaScript</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRENGTHS ============ -->
+<section id="strengths" class="relative py-24 sm:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <div class="text-[10px] uppercase tracking-[.4em] text-accent mb-4">05 — Professional Strengths</div>
+      <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">Beyond the <span class="gradient-text">code</span>.</h2>
+    </div>
+
+    <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-4" id="strengths-grid"></div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section id="education" class="relative py-24 sm:py-32 bg-base-800/40">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <div class="text-[10px] uppercase tracking-[.4em] text-accent mb-4">06 — Education</div>
+      <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">Academic <span class="gradient-text">background</span>.</h2>
+    </div>
+
+    <div class="mt-16 grid md:grid-cols-2 gap-6">
+      <div class="glass rounded-2xl p-8 hover:border-accent/30 transition reveal">
+        <div class="flex items-start gap-5">
+          <div class="w-14 h-14 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-graduation-cap text-accent text-xl"></i>
+          </div>
+          <div>
+            <div class="text-xs text-neutral-500">2021 — 2023</div>
+            <h3 class="mt-1 font-display text-xl font-semibold text-white">Master of Computer Application (MCA)</h3>
+            <p class="mt-2 text-sm text-neutral-400">Muthayammal Engineering College</p>
+          </div>
+        </div>
+      </div>
+      <div class="glass rounded-2xl p-8 hover:border-accent/30 transition reveal">
+        <div class="flex items-start gap-5">
+          <div class="w-14 h-14 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-book text-accent text-xl"></i>
+          </div>
+          <div>
+            <div class="text-xs text-neutral-500">2018 — 2021</div>
+            <h3 class="mt-1 font-display text-xl font-semibold text-white">Bachelor of Computer Application (BCA)</h3>
+            <p class="mt-2 text-sm text-neutral-400">Muthayammal College of Arts & Science</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="relative py-24 sm:py-32">
+  <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center">
+    <div class="text-[10px] uppercase tracking-[.4em] text-accent mb-4 reveal">07 — Contact</div>
+    <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight reveal">
+      Let's build something <span class="gradient-text">meaningful</span>.
+    </h2>
+    <p class="mt-6 text-neutral-400 max-w-xl mx-auto reveal">
+      I'm a Full Stack Developer based in Bangalore, India. Reach out if you'd like to discuss
+      a project, a role, or a collaboration.
+    </p>
+
+    <div class="mt-14 grid sm:grid-cols-3 gap-4 text-left">
+      <a href="mailto:Muthuclm757@gmail.com" data-hover class="glass rounded-2xl p-6 hover:border-accent/40 transition block reveal">
+        <i class="fa-regular fa-envelope text-accent text-xl"></i>
+        <div class="mt-4 text-xs uppercase tracking-[.25em] text-neutral-500">Email</div>
+        <div class="mt-1 text-white text-sm break-all">Muthuclm757@gmail.com</div>
+      </a>
+      <a href="tel:+916379695991" data-hover class="glass rounded-2xl p-6 hover:border-accent/40 transition block reveal">
+        <i class="fa-solid fa-phone text-accent text-xl"></i>
+        <div class="mt-4 text-xs uppercase tracking-[.25em] text-neutral-500">Phone</div>
+        <div class="mt-1 text-white text-sm">+91 63796 95991</div>
+      </a>
+      <div class="glass rounded-2xl p-6 reveal">
+        <i class="fa-solid fa-location-dot text-accent text-xl"></i>
+        <div class="mt-4 text-xs uppercase tracking-[.25em] text-neutral-500">Location</div>
+        <div class="mt-1 text-white text-sm">Bangalore, India</div>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-wrap justify-center gap-3 reveal">
+      <a href="mailto:Muthuclm757@gmail.com" data-magnetic class="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-accent text-base-900 font-semibold hover:bg-accent-soft transition">
+        <i class="fa-regular fa-envelope"></i> Email Me
+      </a>
+      <a href="tel:+916379695991" data-magnetic class="inline-flex items-center gap-3 px-6 py-3.5 rounded-full border border-white/15 text-white hover:border-accent hover:bg-white/[.03] transition">
+        <i class="fa-solid fa-phone"></i> Call Me
+      </a>
+    </div>
+
+    <div class="mt-8 flex justify-center gap-3 reveal">
+      <!-- LinkedIn and GitHub are placeholders — configure the href values below. -->
+      <a href="#" data-social="linkedin" data-hover class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 hover:border-accent hover:text-accent transition" aria-label="LinkedIn (configure URL)">
+        <i class="fa-brands fa-linkedin-in"></i>
+      </a>
+      <a href="#" data-social="github" data-hover class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 hover:border-accent hover:text-accent transition" aria-label="GitHub (configure URL)">
+        <i class="fa-brands fa-github"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="relative border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-12">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div>
+        <div class="font-display text-2xl font-bold">M<span class="text-accent">C</span></div>
+        <div class="mt-1 text-xs text-neutral-500">Muthusamy C · Full Stack Developer · Bangalore, India</div>
+      </div>
+      <div class="flex items-center gap-4 text-sm text-neutral-500">
+        <a href="#" data-social="linkedin" class="hover:text-accent transition">LinkedIn</a>
+        <span class="text-neutral-700">·</span>
+        <a href="#" data-social="github" class="hover:text-accent transition">GitHub</a>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between gap-3 text-xs text-neutral-600">
+      <div>© <span id="year"></span> Muthusamy C. All rights reserved.</div>
+      <div>Designed & built with care.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ BACK TO TOP ============ -->
+<button id="back-top" class="fixed bottom-6 right-6 z-[55] w-11 h-11 rounded-full glass border border-white/10 text-neutral-300 hover:text-accent hover:border-accent transition opacity-0 pointer-events-none" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up text-sm"></i>
+</button>
+
+<!-- ============ THREE.JS + GSAP ============ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+/* ============================================================
+   Muthusamy C — Portfolio interaction layer
+   ============================================================ */
+
+/* ---------- Social link configuration ----------
+   The resume does not contain LinkedIn or GitHub URLs.
+   Paste the real URLs below when available. Empty strings hide the buttons. */
+const socialLinks = {
+  linkedin: "",
+  github: ""
+};
+
+document.querySelectorAll('[data-social]').forEach((el) => {
+  const key = el.dataset.social;
+  const url = socialLinks[key];
+  if (!url) {
+    el.setAttribute('aria-disabled', 'true');
+    el.style.opacity = '.45';
+    el.style.pointerEvents = 'none';
+    el.title = key.charAt(0).toUpperCase() + key.slice(1) + ' URL not configured';
+  } else {
+    el.href = url;
+    el.target = '_blank';
+    el.rel = 'noopener noreferrer';
+  }
+});
+
+/* ---------- Year ---------- */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ---------- Page loader ---------- */
+(function () {
+  const loader = document.getElementById('loader');
+  const fill = document.getElementById('loader-fill');
+  let p = 0;
+  const tick = setInterval(() => {
+    p = Math.min(100, p + Math.random() * 22);
+    fill.style.width = p + '%';
+    if (p >= 100) {
+      clearInterval(tick);
+      setTimeout(() => loader.classList.add('hidden'), 250);
+    }
+  }, 110);
+
+  window.addEventListener('load', () => {
+    fill.style.width = '100%';
+    setTimeout(() => loader.classList.add('hidden'), 400);
+  });
+})();
+
+/* ---------- Custom cursor ---------- */
+(function () {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  const cursor = document.getElementById('cursor');
+  const target = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  const pos = { x: target.x, y: target.y };
+
+  window.addEventListener('mousemove', (e) => {
+    target.x = e.clientX;
+    target.y = e.clientY;
+  });
+
+  function raf() {
+    pos.x += (target.x - pos.x) * 0.2;
+    pos.y += (target.y - pos.y) * 0.2;
+    cursor.style.transform = `translate(${pos.x}px, ${pos.y}px) translate(-50%, -50%)`;
+    requestAnimationFrame(raf);
+  }
+  raf();
+
+  const hoverables = () => document.querySelectorAll('a, button, [data-hover]');
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest('[data-project]')) cursor.classList.add('view');
+    else if (e.target.closest('a, button, [data-hover]')) cursor.classList.add('hover');
+  });
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest('[data-project]')) cursor.classList.remove('view');
+    if (e.target.closest('a, button, [data-hover]')) cursor.classList.remove('hover');
+  });
+  hoverables().forEach(() => {});
+})();
+
+/* ---------- Magnetic buttons ---------- */
+document.querySelectorAll('[data-magnetic]').forEach((el) => {
+  el.addEventListener('mousemove', (e) => {
+    const r = el.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width / 2;
+    const y = e.clientY - r.top - r.height / 2;
+    el.style.transform = `translate(${x * 0.15}px, ${y * 0.25}px)`;
+  });
+  el.addEventListener('mouseleave', () => {
+    el.style.transform = '';
+  });
+});
+
+/* ---------- Navbar scroll behaviour ---------- */
+(function () {
+  const nav = document.getElementById('navbar');
+  const progress = document.getElementById('scroll-progress');
+  const backTop = document.getElementById('back-top');
+
+  function onScroll() {
+    const y = window.scrollY;
+    if (y > 40) {
+      nav.classList.add('glass', 'shadow-lg', 'shadow-black/40');
+    } else {
+      nav.classList.remove('glass', 'shadow-lg', 'shadow-black/40');
+    }
+
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = h > 0 ? (y / h) * 100 : 0;
+    progress.style.width = pct + '%';
+
+    if (y > 600) {
+      backTop.style.opacity = '1';
+      backTop.style.pointerEvents = 'auto';
+    } else {
+      backTop.style.opacity = '0';
+      backTop.style.pointerEvents = 'none';
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+})();
+
+/* ---------- Mobile menu ---------- */
+(function () {
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  let open = false;
+
+  function setOpen(v) {
+    open = v;
+    menu.classList.toggle('hidden', !v);
+    document.body.style.overflow = v ? 'hidden' : '';
+    btn.setAttribute('aria-expanded', String(v));
+    const [a, b, c] = btn.children;
+    if (v) {
+      a.style.transform = 'translateY(7px) rotate(45deg)';
+      b.style.opacity = '0';
+      c.style.transform = 'translateY(-7px) rotate(-45deg)';
+    } else {
+      a.style.transform = '';
+      b.style.opacity = '';
+      c.style.transform = '';
+    }
+  }
+
+  btn.addEventListener('click', () => setOpen(!open));
+  menu.querySelectorAll('[data-mnav]').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && open) setOpen(false); });
+})();
+
+/* ---------- Reveal on scroll ---------- */
+(function () {
+  const els = document.querySelectorAll('.reveal, .timeline-line');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach((el) => el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  els.forEach((el) => io.observe(el));
+})();
+
+/* ---------- Active nav on scroll ---------- */
+(function () {
+  const sections = ['home', 'about', 'experience', 'projects', 'skills', 'education', 'contact']
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+  const links = document.querySelectorAll('[data-nav]');
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        links.forEach((l) => {
+          l.classList.toggle('text-white', l.getAttribute('href') === '#' + id);
+          l.classList.toggle('text-accent', l.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+  sections.forEach((s) => io.observe(s));
+})();
+
+/* ============================================================
+   SKILLS DATA
+   ============================================================ */
+const skills = [
+  { name: 'HTML', icon: 'fa-brands fa-html5' },
+  { name: 'CSS', icon: 'fa-brands fa-css3-alt' },
+  { name: 'JavaScript', icon: 'fa-brands fa-js' },
+  { name: 'Python', icon: 'fa-brands fa-python' },
+  { name: 'Python (Django)', icon: 'fa-solid fa-leaf', label: 'Django' },
+  { name: 'Angular', icon: 'fa-brands fa-angular' },
+  { name: 'ASP.NET', icon: 'fa-solid fa-server' },
+  { name: 'MySQL', icon: 'fa-solid fa-database' },
+  { name: 'SQL Server', icon: 'fa-solid fa-database' },
+  { name: 'Git', icon: 'fa-brands fa-git-alt' },
+  { name: 'Visual Studio', icon: 'fa-solid fa-code' },
+  { name: 'Visual Studio Code', icon: 'fa-solid fa-code-branch' },
+  { name: 'MS Office', icon: 'fa-solid fa-file-lines' },
+  { name: 'WordPress', icon: 'fa-brands fa-wordpress' }
+];
+
+const skillsGrid = document.getElementById('skills-grid');
+skills.forEach((s) => {
+  const el = document.createElement('div');
+  el.className = 'group glass rounded-2xl p-5 hover:border-accent/40 transition reveal';
+  el.setAttribute('data-hover', '');
+  el.innerHTML = `
+    <i class="${s.icon} text-2xl text-accent"></i>
+    <div class="mt-4 font-display text-sm font-semibold text-white">${s.label || s.name}</div>
+    <div class="mt-1 text-[10px] uppercase tracking-[.2em] text-neutral-500">Technology</div>
+  `;
+  skillsGrid.appendChild(el);
+  ioObserve(el);
+});
+
+/* ============================================================
+   STRENGTHS DATA (exact resume wording)
+   ============================================================ */
+const strengths = [
+  { icon: 'fa-solid fa-handshake', title: 'Client Relationships', text: 'Can maintain a good relationship with onshore clients.' },
+  { icon: 'fa-solid fa-user-gear', title: 'Self Management', text: 'Excellent self-management skills.' },
+  { icon: 'fa-solid fa-shield-halved', title: 'System Administration', text: 'Proficiency in system administration.' },
+  { icon: 'fa-solid fa-comments', title: 'Communication', text: 'Effective communication abilities.' },
+  { icon: 'fa-solid fa-vial-circle-check', title: 'Process Automation Testing', text: 'Experience in process automation testing.' },
+  { icon: 'fa-solid fa-bolt', title: 'Self Motivation', text: 'Self-motivated.' }
+];
+
+const strengthsGrid = document.getElementById('strengths-grid');
+strengths.forEach((s) => {
+  const el = document.createElement('div');
+  el.className = 'group glass rounded-2xl p-6 hover:border-accent/40 transition reveal';
+  el.innerHTML = `
+    <i class="${s.icon} text-2xl text-accent"></i>
+    <h3 class="mt-4 font-display text-lg font-semibold text-white">${s.title}</h3>
+    <p class="mt-2 text-sm text-neutral-400 leading-relaxed">${s.text}</p>
+  `;
+  strengthsGrid.appendChild(el);
+  ioObserve(el);
+});
+
+/* ============================================================
+   PROJECTS DATA (only resume-supported facts)
+   ============================================================ */
+const projects = {
+  1: {
+    title: 'Real Estate Online Booking & Billing System',
+    category: 'Web Application',
+    context: 'Delivered during my role as Software Engineer at Techvaraha Solution Pvt Ltd.',
+    overview: 'Successfully created a real estate online booking and billing system.',
+    responsibilities: [
+      'Gathered client requirements',
+      'Communicated requirements to the development team',
+      'Supervised project implementation',
+      'Ensured alignment with client goals'
+    ],
+    stack: ['Web App', 'Billing', 'Enterprise UI']
+  },
+  2: {
+    title: 'Pharmaceutical Material Tracking System',
+    category: 'Enterprise Application',
+    context: 'Delivered during my role as Software Engineer at Techvaraha Solution Pvt Ltd.',
+    overview: 'Successfully created a pharmaceutical material tracking system.',
+    responsibilities: [
+      'Gathered client requirements',
+      'Communicated requirements to the development team',
+      'Supervised project implementation',
+      'Ensured alignment with client goals'
+    ],
+    stack: ['Tracking', 'Enterprise', 'Dashboard']
+  },
+  3: {
+    title: 'IT Ticket & Production Issue Site',
+    category: 'IT Support Platform',
+    context: 'Delivered during my role as Software Engineer at Techvaraha Solution Pvt Ltd.',
+    overview: 'Created an IT site for raising tickets and addressing production-related issues.',
+    responsibilities: [
+      'Gathered client requirements',
+      'Communicated requirements to the development team',
+      'Supervised project implementation',
+      'Ensured alignment with client goals'
+    ],
+    stack: ['Support', 'Ticketing', 'Workflow']
+  },
+  4: {
+    title: 'Student Attendance Management (Demo)',
+    category: 'Internship Project',
+    context: 'Built during the Python Full-Stack internship at Haalan Infotech (April — July 2023).',
+    overview: 'Created a demo project for student attendance management.',
+    responsibilities: [
+      'Learned full-stack development end to end',
+      'Database design',
+      'Backend development',
+      'Frontend development',
+      'User interface'
+    ],
+    stack: ['Django', 'Python', 'Learning Project']
+  }
+};
+
+/* ============================================================
+   PROJECT MODAL
+   ============================================================ */
+(function () {
+  const modal = document.getElementById('modal');
+  const content = document.getElementById('modal-content');
+
+  function open(id) {
+    const p = projects[id];
+    if (!p) return;
+    content.innerHTML = `
+      <div class="text-[10px] uppercase tracking-[.35em] text-accent">${p.category}</div>
+      <h3 id="modal-title" class="mt-3 font-display text-2xl sm:text-3xl font-bold text-white leading-tight">${p.title}</h3>
+      <p class="mt-3 text-sm text-neutral-500">${p.context}</p>
+      <div class="mt-6 divider"></div>
+      <div class="mt-6">
+        <div class="text-xs uppercase tracking-[.25em] text-neutral-500 mb-2">Overview</div>
+        <p class="text-sm text-neutral-300 leading-relaxed">${p.overview}</p>
+      </div>
+      <div class="mt-6">
+        <div class="text-xs uppercase tracking-[.25em] text-neutral-500 mb-3">Responsibilities</div>
+        <ul class="space-y-2 text-sm text-neutral-300">
+          ${p.responsibilities.map((r) => `<li class="flex gap-3"><i class="fa-solid fa-check text-accent mt-1 text-xs"></i><span>${r}</span></li>`).join('')}
+        </ul>
+      </div>
+      <div class="mt-6 flex flex-wrap gap-2">
+        ${p.stack.map((t) => `<span class="text-xs px-3 py-1 rounded-full border border-white/10 text-neutral-300">${t}</span>`).join('')}
+      </div>
+      <div class="mt-8 text-xs text-neutral-600">
+        Visuals are conceptual representations based on resume information.
+      </div>
+    `;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-project]').forEach((btn) => {
+    btn.addEventListener('click', () => open(btn.dataset.project));
+  });
+  modal.querySelectorAll('[data-close-modal]').forEach((el) => el.addEventListener('click', close));
+  window.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+})();
+
+/* ============================================================
+   THREE.JS HERO SCENE
+   Floating node network + particles + subtle cursor parallax
+   ============================================================ */
+(function () {
+  if (typeof THREE === 'undefined') return;
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+  let renderer, scene, camera, raf;
+  try {
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, alpha: true });
+  } catch (e) {
+    return; // WebGL unavailable — canvas stays empty, page works.
+  }
+
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(55, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+  camera.position.set(0, 0, 6);
+
+  // Node group
+  const group = new THREE.Group();
+  scene.add(group);
+
+  const nodeCount = isMobile ? 30 : 70;
+  const positions = [];
+  const nodes = [];
+  const nodeGeo = new THREE.SphereGeometry(0.045, 12, 12);
+  const nodeMat = new THREE.MeshBasicMaterial({ color: 0x10b981, transparent: true, opacity: 0.9 });
+
+  for (let i = 0; i < nodeCount; i++) {
+    const r = 1.5 + Math.random() * 1.8;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+    const x = r * Math.sin(phi) * Math.cos(theta);
+    const y = r * Math.sin(phi) * Math.sin(theta) * 0.6;
+    const z = r * Math.cos(phi);
+    positions.push(new THREE.Vector3(x, y, z));
+    const m = new THREE.Mesh(nodeGeo, nodeMat);
+    m.position.set(x, y, z);
+    group.add(m);
+    nodes.push(m);
+  }
+
+  // Connection lines
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x10b981, transparent: true, opacity: 0.18 });
+  for (let i = 0; i < positions.length; i++) {
+    for (let j = i + 1; j < positions.length; j++) {
+      const d = positions[i].distanceTo(positions[j]);
+      if (d < 1.15) {
+        const g = new THREE.BufferGeometry().setFromPoints([positions[i], positions[j]]);
+        group.add(new THREE.Line(g, lineMat));
+      }
+    }
+  }
+
+  // Ambient particles
+  const pCount = isMobile ? 120 : 320;
+  const pGeo = new THREE.BufferGeometry();
+  const pPos = new Float32Array(pCount * 3);
+  for (let i = 0; i < pCount * 3; i++) {
+    pPos[i] = (Math.random() - 0.5) * 12;
+  }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  const pMat = new THREE.PointsMaterial({ color: 0x67e8f9, size: 0.02, transparent: true, opacity: 0.55 });
+  const points = new THREE.Points(pGeo, pMat);
+  scene.add(points);
+
+  // Pointer parallax
+  const pointer = { x: 0, y: 0 };
+  const target = { x: 0, y: 0 };
+  window.addEventListener('mousemove', (e) => {
+    target.x = (e.clientX / window.innerWidth) * 2 - 1;
+    target.y = -((e.clientY / window.innerHeight) * 2 - 1);
+  });
+
+  function resize() {
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize);
+
+  let t = 0;
+  function animate() {
+    t += 0.0025;
+    pointer.x += (target.x - pointer.x) * 0.04;
+    pointer.y += (target.y - pointer.y) * 0.04;
+
+    group.rotation.y = t + pointer.x * 0.4;
+    group.rotation.x = Math.sin(t * 0.8) * 0.08 + pointer.y * 0.2;
+
+    points.rotation.y = -t * 0.4;
+    points.rotation.x = pointer.y * 0.15;
+
+    nodes.forEach((n, i) => {
+      n.scale.setScalar(1 + Math.sin(t * 6 + i) * 0.25);
+    });
+
+    renderer.render(scene, camera);
+    raf = requestAnimationFrame(animate);
+  }
+
+  if (reduce) {
+    renderer.render(scene, camera);
+  } else {
+    animate();
+  }
+
+  // Pause when off-screen
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        if (!reduce && !raf) animate();
+      } else {
+        cancelAnimationFrame(raf);
+        raf = null;
+      }
+    });
+  }, { threshold: 0.05 });
+  io.observe(canvas);
+})();
+
+/* ---------- IntersectionObserver helper for dynamically added nodes ---------- */
+function ioObserve(el) {
+  if (!('IntersectionObserver' in window)) { el.classList.add('in'); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  io.observe(el);
+}
+</script>
+
+</body>
+</html>
